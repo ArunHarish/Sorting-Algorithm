@@ -1,83 +1,85 @@
 "use strict";
 
-
-function HeapSort(input) {
+class HeapSort {
+    constructor(input) {
+        this.input = input;
+        this.end = input.length;
+    }
     
-    var length = input.length;
-    var end = length - 1;
-    
-    function swap(a, b) {
-        var f = input[a];
-        var s = input[b];
+    swap(a, b) {
+        var f = this.input[a];
+        var s = this.input[b];
         
         f = (f ^ s) ^ (s ^= f ^ s);
         
-        input[a] = f;
-        input[b] = s;
-    
+        this.input[a] = f;
+        this.input[b] = s;
     }
     
-    function leftIndex(index) {
+    leftIndex(index) {
         var i = 2 * index + 1;
-        if(i > end)
+        if(i > this.end)
             return null;
         return i; 
     }
     
-    function rightIndex(index) {
+    rightIndex(index) {
         var i = 2 * index + 2;
-        if(i > end)
+        if(i > this.end)
             return null;
         return i;
     }
     
-    function parentIndex(index) {
-        return Math.max(Math.floor((index - 1) / 2), 0);
+    parentIndex(index) {
+         return Math.max(Math.floor((index - 1) / 2), 0);
     }
     
-    function heapify(index) {
+    get maxHeap() {
         
-        //Base Case
-        //Who knew undefined == null 
-        if(index > end || index === null)
-            return null;
+        function maxHeapify(index) {
+            //Base Case
+            //Who knew undefined == null 
+            if(index > this.end || index === null)
+                return null;
+                
+            var index = index || 0;
+            var indexLeft = this.leftIndex(index);
+            var indexRight = this.rightIndex(index);
             
-        var index = index || 0;
-        var indexLeft = leftIndex(index);
-        var indexRight = rightIndex(index);
-        
-        var leftChild = input[indexLeft] || null;
-        var rightChild = input[indexRight] || null;
-        var currentNode = input[index];
-        
-        //Recursive Case
-        
-        if((leftChild >= rightChild || (rightChild == null && leftChild != null)) && currentNode < leftChild) {
-            swap(indexLeft, index);
-            heapify(parentIndex(index));
-        }
-        else if((rightChild > leftChild || (leftChild == null && rightChild != null)) && currentNode < rightChild) {
-            swap(indexRight, index);
-            heapify(parentIndex(index));
-        }
-        
-        heapify(indexRight);
-        heapify(indexLeft);
-        
-        
-        return true;
+            var leftChild = input[indexLeft] || null;
+            var rightChild = input[indexRight] || null;
+            var currentNode = input[index];
             
+            //Recursive Case
+            
+            if((leftChild >= rightChild || (rightChild == null && leftChild != null)) && currentNode < leftChild) {
+                this.swap(indexLeft, index);
+                maxHeapify.call(this, this.parentIndex(index));
+            }
+            else if((rightChild > leftChild || (leftChild == null && rightChild != null)) && currentNode < rightChild) {
+                this.swap(indexRight, index);
+                maxHeapify.call(this, this.parentIndex(index));
+            }
+            
+            maxHeapify.call(this, indexRight);
+            maxHeapify.call(this, indexLeft);
+            
+            
+            return true;
+        }
+        
+        
+        while(this.end > 0 && maxHeapify.call(this)) {
+            this.swap(0, this.end--);
+        }
+        
+        return this.input;
+        
     }
-    
-    
-    while(end > 0) {
-        heapify();
-        swap(0, end--);
+    get minHeap() {
+        
     }
-    
 }
-
-
 
 var input = [
     28,
@@ -110,3 +112,4 @@ var input = [
     1200
 ];
 var a = new HeapSort(input);
+console.log(a.maxHeap);
