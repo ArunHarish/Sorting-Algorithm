@@ -54,7 +54,7 @@ class HeapSort {
             
             //Recursive Case
             
-            if((leftChild <= rightChild || (rightChild == null && leftChild != null)) && currentNode < leftChild) {
+            if((leftChild >= rightChild || (rightChild == null && leftChild != null)) && currentNode < leftChild) {
                 this.swap(indexLeft, index);
                 maxHeapify.call(this, this.parentIndex(index));
             }
@@ -114,5 +114,4 @@ var input = [
     1200
 ];
 var a = new HeapSort(input);
-a.maxHeap
-console.log(input);
+console.log(a.maxHeap)
