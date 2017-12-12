@@ -7,9 +7,11 @@ class HeapSort {
     }
     
     swap(a, b) {
+        //Can only swap integer valued arrays
         var f = this.input[a];
         var s = this.input[b];
         
+        // Using xor algorithm to swap values.
         f = (f ^ s) ^ (s ^= f ^ s);
         
         this.input[a] = f;
@@ -112,4 +114,5 @@ var input = [
     1200
 ];
 var a = new HeapSort(input);
-console.log(a.maxHeap);
+a.maxHeap
+console.log(input);
