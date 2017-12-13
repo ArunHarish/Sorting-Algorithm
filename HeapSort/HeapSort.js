@@ -60,7 +60,6 @@ class HeapSort {
             } else if (rightChild != null && (rightChild >= leftChild) && rightChild > currentNode) {
                 this.swap(indexRight, index);
                 maxHeapify.call(this, this.parentIndex(index));
-
             }
 
             maxHeapify.call(this, indexRight);
