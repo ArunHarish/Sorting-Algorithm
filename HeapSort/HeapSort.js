@@ -35,7 +35,10 @@ class HeapSort {
         return Math.max(Math.floor((index - 1) / 2), 0);
     }
 
-    get maxHeap() {
+    maxHeap() {
+
+        var input = this.input;
+
 
         function maxHeapify(index) {
             //Base Case
@@ -75,10 +78,11 @@ class HeapSort {
             this.swap(0, this.end--);
         }
 
-        return this.input;
-
     }
-    get minHeap() {
+    minHeap() {
+
+        var input = this.input;
+
         function minHeapify(index) {
             //Base Case
             //Who knew undefined == null 
@@ -116,9 +120,10 @@ class HeapSort {
 
 
         while (this.end > 0 && minHeapify.call(this)) {
-
             this.swap(0, this.end--);
         }
-        return this.input;
+
     }
 }
+
+module.exports = HeapSort;
