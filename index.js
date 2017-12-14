@@ -3,7 +3,7 @@ var MergeSort = require("./MergeSort/MergeSort.js");
 var HeapSort = require("./HeapSort/HeapSort.js");
 
 function generateRandom() {
-    var random = new Array(1000);
+    var random = new Array(10);
     for(var x = 0; x < random.length; x++) {
         random[x] = Math.floor(1 + Math.random() * 1000);
     }
@@ -19,7 +19,7 @@ function test() {
     //Function goes here
     var hs = new QuickSort(random);
 
-    hs.sort(-1);
+    hs.sort(1);
 
     console.log(random);
     

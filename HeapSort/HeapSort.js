@@ -1,5 +1,5 @@
 "use strict";
-
+//Comparator method can be used to sort elements.
 class HeapSort {
     constructor(input) {
         this.input = input;
@@ -87,7 +87,7 @@ class HeapSort {
             //Base Case
             //Who knew undefined == null 
             if (index > this.end || index === null)
-                return null;
+                return ;
 
             var index = index || 0;
             var indexLeft = this.leftIndex(index);

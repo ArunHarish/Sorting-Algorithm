@@ -20,13 +20,21 @@ class QuickSort {
         
     }
 
+    comparator(rightValue, pivotValue) {
+        if(this.sortType == -1)
+            return rightValue < pivotValue;
+        return pivotValue < rightValue;
+    }
+
     partition(right, pivot) {
         
         var left = right;
         var pivotValue = this.input[pivot];
 
         while(right < pivot) {
-            if(this.input[right] < pivotValue) {
+            
+            var rightValue = this.input[right];
+            if(this.comparator(rightValue, pivotValue)) {
                 this.swap(left, right);
                 left++;
             }
