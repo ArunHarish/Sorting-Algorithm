@@ -22,8 +22,8 @@ class QuickSort {
 
     comparator(rightValue, pivotValue) {
         if(this.sortType == -1)
-            return rightValue < pivotValue;
-        return pivotValue < rightValue;
+            return pivotValue < rightValue;
+        return rightValue < pivotValue;
     }
 
     partition(right, pivot) {

@@ -14,14 +14,15 @@ function generateRandom() {
 function test() {
     var t1 = (new Date()).getTime();
     var t2;
-    var random = generateRandom();
+    var heapSample = [10, 28, 128, 89, 257, 492, 587, 856, 243, 861];
+    var quickSample =[10, 28, 128, 89, 257, 492, 587, 856, 243, 861];
         
     //Function goes here
-    var hs = new QuickSort(random);
-
-    hs.sort(1);
-
-    console.log(random);
+    var hs = new HeapSort(heapSample);
+    var qs = new QuickSort(quickSample);
+    hs.sort(-1);
+    qs.sort(-1);
+    console.log(heapSample, quickSample);
     
     //Constant
     t2 = (new Date()).getTime();
