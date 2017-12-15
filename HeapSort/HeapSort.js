@@ -38,7 +38,7 @@ class HeapSort {
         return Math.max(Math.floor((index - 1) / 2), 0);
     }
 
-    leftCondition(leftChild, rightChild, currentNode) {
+    leftComparator(leftChild, rightChild, currentNode) {
         if(this.sortType == 1)
         {
             return (leftChild != null && (leftChild >= rightChild) && 
@@ -49,7 +49,7 @@ class HeapSort {
         currentNode > leftChild);
     }
 
-    rightCondition(leftChild, rightChild, currentNode) {
+    rightComparator(leftChild, rightChild, currentNode) {
         if(this.sortType == 1) {
             return (rightChild != null && (rightChild >= leftChild) && 
             rightChild > currentNode);
@@ -78,12 +78,12 @@ class HeapSort {
             var currentNode = input[index];
             
             //Recursive case
-            if(this.leftCondition(leftChild,rightChild,currentNode)) {
+            if(this.leftComparator(leftChild,rightChild,currentNode)) {
                 this.swap(indexLeft, index);
                 heapify.call(this, this.parentIndex(index));
 
             } else 
-            if (this.rightCondition(leftChild, rightChild, currentNode)) {
+            if (this.rightComparator(leftChild, rightChild, currentNode)) {
                 this.swap(indexRight, index);
                 heapify.call(this, this.parentIndex(index));
             }
