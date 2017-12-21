@@ -46,19 +46,7 @@ class QuickSort {
 
         return left;
     }
-    //Using Recursion
-    quickSort(a, b) {
-
-        //Base case
-        if(a > b) {
-            return ;
-        }
-        
-        //Recursive case
-        var pIndex = this.partition(a, b);
-        this.quickSort(pIndex + 1, b);
-        this.quickSort(a, pIndex - 1);
-    }
+    
     generatePosition(start, end) {
         return {
             partition : this.partition(start , end),
@@ -67,7 +55,7 @@ class QuickSort {
         }
     }
     //Using Iteration
-    iquickSort(a, b) {
+    quickSort(a, b) {
         //first partition
         let pIndice = [
             this.generatePosition(a, b)
