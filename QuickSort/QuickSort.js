@@ -65,6 +65,7 @@ class QuickSort {
             
             let currentPivot = (pIndice.pop());
             
+            let leftStart = currentPivot.start;
             let leftEnd = currentPivot.partition - 1;
             let leftStart = currentPivot.start;
             
