@@ -114,37 +114,30 @@ class QuickSort {
         return this.input;
     }
 
-}
-
-function generateRnd() {
-    var returnArray = new Array(10000000);
-    for(var x = 0; x < returnArray.length; x++) {
-        returnArray[x] = Math.floor(
-            1 + Math.random() * 99
-        );
+    comparator(rightValue, pivotValue) {
+        if(this.sortType == -1)
+            return pivotValue < rightValue;
+        return rightValue < pivotValue;
     }
-    return returnArray;
-}
 
-function check(a) {
-    for(var x = 0; x < a.length; x++) {
-        if(x > 0 && a[x] < a[x - 1])
-            return false;
+    partition(right, pivot) {
+        
+        var left = right;
+        var pivotValue = this.input[pivot];
+
+        while(right < pivot) {
             
+            var rightValue = this.input[right];
+            if(this.comparator(rightValue, pivotValue)) {
+                this.swap(left, right);
+                left++;
+            }
+
+            right++;
+        }
+
+        this.swap(left, pivot);
     }
-    return true;
 }
 
-for(var x = 0; x < 1; x++)
-    {
-        let sample = generateRnd();
-        let qs = new QuickSort(sample);
-        let t1 = new Date().getTime();
-
-        qs.sort(1);
-
-        let t2 = new Date().getTime();
-
-        console.log("Sort Time Elapsed: " + (t2 - t1));
-    }
-//module.exports = QuickSort;
+module.exports = QuickSort;
