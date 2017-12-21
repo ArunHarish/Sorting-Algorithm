@@ -14,8 +14,7 @@ function generateRandom() {
 function test() {
     var t1 = (new Date()).getTime();
     var t2;
-    var heapSample = generateRandom();
-    var quickSample = JSON.parse(JSON.stringify(heapSample));
+    var quickSample = generateRandom();
     //Function goes here
    
 
