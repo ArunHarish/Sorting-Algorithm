@@ -1,21 +1,18 @@
 "use strict";
 
 class QuickSort {
-    constructor(input) {
+    constructor(input, comparator) {
         this.input = input;
         this.sortType = 1;
+        this.comparator = comparator || this.comparator;
     }
 
     swap(a, b) {
         if(a != b) {
-            //Can only swap integer valued arrays
-            var f = this.input[a];
-            var s = this.input[b];
-
-            // Using xor algorithm to swap values.
-            f = (f ^ s) ^ (s ^= f ^ s);
-            this.input[a] = f;
-            this.input[b] = s;
+            //swap for any sortable data structures
+            let temp = this.input[a];
+            this.input[a] = this.input[b];
+            this.input[b] = temp;
         }
         
     }
@@ -34,7 +31,7 @@ class QuickSort {
         while(right < pivot) {
             
             var rightValue = this.input[right];
-            if(this.comparator(rightValue, pivotValue)) {
+            if(this.comparator.call(this, rightValue, pivotValue)) {
                 this.swap(left, right);
                 left++;
             }
@@ -103,30 +100,6 @@ class QuickSort {
 
     }
 
-}
-
-function generateRandom() {
-    let returnArray = [];
-    for(var x = 0; x < 100; x++) {
-        returnArray.push(
-            1 + Math.floor(
-                Math.random() * 99
-            )
-        )
-    }
-
-    return returnArray;
-}
-
-function check(a) {
-    let last = a[0];
-    a.forEach(element => {
-        if(last < element) {
-            return false;
-        }
-    });
-
-    return true;
 }
 
 module.exports = QuickSort;
