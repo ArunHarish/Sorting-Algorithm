@@ -46,7 +46,7 @@ class QuickSort {
 
         return left;
     }
-    
+
     generatePosition(start, end) {
         return {
             partition : this.partition(start , end),
@@ -56,6 +56,7 @@ class QuickSort {
     }
     //Using Iteration
     quickSort(a, b) {
+        
         //first partition
         let pIndice = [
             this.generatePosition(a, b)
@@ -94,38 +95,38 @@ class QuickSort {
         if(a < 0) {
             this.sortType = -1;
             this.quickSort(0, length - 1);
-            return this.input;
         }
-        
-        this.sortType = 1;
-        this.quickSort(0, length - 1);
-        return this.input;
-    }
-
-    comparator(rightValue, pivotValue) {
-        if(this.sortType == -1)
-            return pivotValue < rightValue;
-        return rightValue < pivotValue;
-    }
-
-    partition(right, pivot) {
-        
-        var left = right;
-        var pivotValue = this.input[pivot];
-
-        while(right < pivot) {
-            
-            var rightValue = this.input[right];
-            if(this.comparator(rightValue, pivotValue)) {
-                this.swap(left, right);
-                left++;
-            }
-
-            right++;
+        else {
+            this.sortType = 1;
+            this.quickSort(0, length - 1);
         }
 
-        this.swap(left, pivot);
     }
+
+}
+
+function generateRandom() {
+    let returnArray = [];
+    for(var x = 0; x < 100; x++) {
+        returnArray.push(
+            1 + Math.floor(
+                Math.random() * 99
+            )
+        )
+    }
+
+    return returnArray;
+}
+
+function check(a) {
+    let last = a[0];
+    a.forEach(element => {
+        if(last < element) {
+            return false;
+        }
+    });
+
+    return true;
 }
 
 module.exports = QuickSort;
