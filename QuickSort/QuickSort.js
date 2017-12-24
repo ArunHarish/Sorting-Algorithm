@@ -1,5 +1,7 @@
 "use strict";
 
+let StackList = require("./StackList.js");
+
 class QuickSort {
     constructor(input, comparator) {
         this.input = input;
@@ -16,9 +18,9 @@ class QuickSort {
         }
         
     }
-
-    comparator(rightValue, pivotValue) {
-        if(this.sortType == -1)
+    //Default comparator if none is provided
+    comparator(rightValue, pivotValue, sortType) {
+        if(sortType == -1)
             return pivotValue < rightValue;
         return rightValue < pivotValue;
     }
@@ -31,7 +33,7 @@ class QuickSort {
         while(right < pivot) {
             
             var rightValue = this.input[right];
-            if(this.comparator.call(this, rightValue, pivotValue)) {
+            if(this.comparator(rightValue, pivotValue, this.sortType)) {
                 this.swap(left, right);
                 left++;
             }
@@ -55,13 +57,12 @@ class QuickSort {
     quickSort(a, b) {
         
         //first partition
-        let pIndice = [
+        let pIndice = new StackList(
             this.generatePosition(a, b)
-        ];
+        );
+        let currentPivot;
 
-        while(pIndice.length) {
-            
-            let currentPivot = (pIndice.pop());
+        while((currentPivot = pIndice.pop()) != null) {
             
             let leftStart = currentPivot.start;
             let leftEnd = currentPivot.partition - 1;
