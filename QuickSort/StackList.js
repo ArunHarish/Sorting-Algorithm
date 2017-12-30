@@ -95,12 +95,9 @@ class StackList {
         delete object.currentNode;
 
         if(currentNode == firstNode)
-        {
             delete object.firstNode;
-        }
-        else {
+        else
             object.currentNode = prevNode;
-        }
 
         return currentValue;
 
