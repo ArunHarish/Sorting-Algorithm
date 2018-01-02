@@ -1,8 +1,9 @@
 "use strict";
 
 class MergeSort {
-    constructor() {
-        
+    constructor(input) {
+        this.input = input;
+        this.sortType = 1;
     }
 
     comparator() {
@@ -29,5 +30,3 @@ class MergeSort {
     }
 
 }
-
-module.exports = MergeSort;

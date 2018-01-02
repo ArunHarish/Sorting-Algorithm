@@ -1,28 +1,22 @@
 var QuickSort = require("./QuickSort/QuickSort.js");
 var MergeSort = require("./MergeSort/MergeSort.js");
 var HeapSort = require("./HeapSort/HeapSort.js");
+var BubbleSort = require("./BubbleSort/BubbleSort.js");
 
 function generateRandom() {
-    var random = new Array(20000500);
+    var random = new Array(100000);
     for(var x = 0; x < random.length; x++) {
         random[x] = Math.floor(1 + Math.random() * 10000);
     }
     return random;
 }
 
-function check(array, sortType) {
-    var lastValue = array[0];
+function check(a, sortType) {
 
-    for(var x = 1; x < array.length; x++) {
-        if(
-            (sortType < 0 && array[x] > lastValue) || 
-            (sortType > 0 && array[x] < lastValue)
-        )
+    for(var x = 1; x < a.length; x++) {
+        if(!sortType && a[x] > a[x-1] || sortType && a[x] < a[x - 1])
             return false;
-        
-        lastValue = array[x];
     }
-
     return true;
 }
 
@@ -40,7 +34,7 @@ function test() {
     qs.sort(1);
     t2 = (new Date()).getTime();
     console.log("Quick Sort Time: "+ (t2 - t1));
-
+    console.log(check(quickSample, 1))
 }
 
 test();
