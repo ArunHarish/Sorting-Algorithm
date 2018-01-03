@@ -1,4 +1,5 @@
 "use strict";
+
 class BubbleSort {
     constructor(input) {
         this.input = input;
