@@ -46,12 +46,13 @@ class QueueList {
 
         const object = privateMap.get(this);
         const firstNode = object.firstNode;
-        const nodeValue = firstNode.getValue();
-        const nextNode =  firstNode.getNextNode();
 
         //If there are no first element
         if(firstNode == null)
             return null;
+
+        const nodeValue = firstNode.getValue();
+        const nextNode =  firstNode.getNextNode();
 
         //If there is only one element in the list
         if(firstNode == object.lastNode)
@@ -67,14 +68,5 @@ class QueueList {
     }
 
 }
-
-//Test
-//Boundary condition: when there is only one element in the list
-let ql = new QueueList();
-ql.append(32);
-
-console.assert(ql.unshift() == 32, "First element not found");
-
-ql.append(64);
 
 module.exports = QueueList;
