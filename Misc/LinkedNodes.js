@@ -21,10 +21,10 @@ class LinkedNodes {
     }
 
     getNextNode() {
-        return this.nextNode || false;
+        return this.nextNode || null;
     }
     getPrevNode() {
-        return this.prevNode || false;
+        return this.prevNode || null;
     }
 
     setValue(newValue) {
