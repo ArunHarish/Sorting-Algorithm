@@ -8,9 +8,9 @@ class MergeSort {
     }
 
     comparator(a, b) {
-        if(this.sortType == -1)
-            return ;
-        return ;
+        if(this.sortType == 1)
+            return a < b;
+        return b < a;
     }
     //Using Recursion
     mergeSort(array, start, end) {
@@ -20,19 +20,23 @@ class MergeSort {
 
         // Recursive case 
         const middlePivot = (end - start) / 2;
-        let left = this.mergeSort(array, start, start + Math.floor(middlePivot) );
-        let right = this.mergeSort(array, start + Math.floor(1 + middlePivot), end );
+        let left = this.mergeSort(array, start, start + Math.floor(middlePivot));
+        let right = this.mergeSort(array, start + Math.floor(1 + middlePivot), end);
         let returnArray = [];
 
         while(left.length || right.length) {
-            const bothExists = left.length && right.length;
 
-            if(bothExists && left[0] < right[0] || left.length && !right.length) {
-                returnArray.push(left[0]);
+            const bothExists = left.length && right.length;
+            const leftValue = left[0];
+            const rightValue = right[0];
+            const comparator = this.comparator(leftValue, rightValue);
+
+            if(bothExists && comparator || left.length && !right.length) {
+                returnArray.push(leftValue);
                 left.shift();
             }
-            else if(bothExists && right[0] <= left[0] || !left.length && right.length) {
-                returnArray.push(right[0]);
+            else if(bothExists && !comparator || !left.length && right.length) {
+                returnArray.push(rightValue);
                 right.shift();
             }
 
@@ -48,15 +52,12 @@ class MergeSort {
         //So we cannot directly change the given array but we can change the value of each elements
         let sortedArray;
 
-        if(a < 0) {
+        if(a < 0)
             this.sortType = -1;
-            sortedArray = this.mergeSort(this.input, 0, this.input.length - 1);
-            return ;
-        }
+        else
+            this.sortType = 1;    
         
-        this.sortType = 1;
         sortedArray = this.mergeSort(this.input, 0, this.input.length - 1);
-    
         this.input.forEach(function(a, b, c) {
             c[b] = sortedArray[b];
         })
@@ -65,9 +66,4 @@ class MergeSort {
 
 }
 
-//Test [32, 64, 1, 22, 32, 15, 19, 33]
-let data =  [32, 64, 1, 22, 32, 15, 19, 33];
-let ms = new MergeSort(data);
-ms.sort(1);
-
-console.log(data);
+module.exports = MergeSort;
