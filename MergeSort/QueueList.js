@@ -7,7 +7,8 @@ class QueueList {
     constructor(firstElement) {
         let values = {
             firstNode : null,
-            lastNode : null
+            lastNode : null,
+            length : 0
         }
 
         if(firstElement != null) {
@@ -40,9 +41,25 @@ class QueueList {
             object.lastNode = newNode;
         }
 
+        object.length++;
+
     }
 
-    unshift() {
+    get length() {
+        return privateMap.get(this).length;
+    }
+
+
+    getElement() {
+        const firstNode = privateMap.get(this).firstNode;
+
+        if(firstNode == null) 
+            return undefined;
+
+        return firstNode.getValue();
+    }
+
+    shift() {
 
         const object = privateMap.get(this);
         const firstNode = object.firstNode;
@@ -62,7 +79,9 @@ class QueueList {
         }
         //If there are more than one element
         delete object.firstNode;
+        
         object.firstNode = nextNode;
+        object.length--;
 
         return nodeValue;
     }
