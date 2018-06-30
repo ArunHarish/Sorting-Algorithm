@@ -4,9 +4,9 @@ var HeapSort = require("./HeapSort/HeapSort.js");
 var BubbleSort = require("./BubbleSort/BubbleSort.js");
 
 function generateRandom() {
-    var random = new Array(100000);
+    var random = new Array(1000000);
     for(var x = 0; x < random.length; x++) {
-        random[x] = Math.floor(1 + Math.random() * 10000);
+        random[x] = Math.floor(1 + Math.random() * 99);
     }
     return random;
 }
